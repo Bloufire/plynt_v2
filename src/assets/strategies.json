@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Stable Yield",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "20% APY",
+    "buttonLink": "/docs",
+    "type": "stable"
+  },
+  {
+    "id": 2,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Degen High Risk",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "60% APY",
+    "buttonLink": "/docs",
+    "type": "degen"
+  },
+  {
+    "id": 3,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Safe Growth",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "15% APY",
+    "buttonLink": "/docs",
+    "type": "safe"
+  },
+  {
+    "id": 4,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Balanced Returns",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "25% APY",
+    "buttonLink": "/docs",
+    "type": "stable"
+  }
+]
