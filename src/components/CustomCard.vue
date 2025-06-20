@@ -12,8 +12,62 @@
     </div>
     <!-- Card Footer -->
     <div class="card-footer text-center">
-      <router-link :to="buttonLink" class="btn btn-custom">{{ buttonText }}</router-link>
+      <button class="btn btn-custom" @click.prevent="openModal">{{ buttonText }}</button>
     </div>
+    <!-- Modal -->
+    <Teleport to="body">
+      <div
+        v-if="showModal"
+        class="modal fade show"
+        :id="modalId"
+        tabindex="-1"
+        :aria-labelledby="`${modalId}-Label`"
+        aria-hidden="true"
+        style="display: block; background: rgba(0, 0, 0, 0.5);"
+        @click.self="closeModal"
+      >
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <img
+                :src="headerImage"
+                :alt="headerText + ' icon'"
+                class="header-image rounded-circle me-3"
+              />
+              <h5 class="modal-title" :id="`${modalId}-Label`">{{ headerText }}</h5>
+              <button type="button" class="btn-close" @click="closeModal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <!-- Left: Form -->
+                <div class="col-md-6 d-flex flex-column justify-content-center">
+                  <div class="mb-3">
+                    <label for="investAmount" class="form-label">Investment Amount</label>
+                    <input
+                      type="number"
+                      class="form-control"
+                      id="investAmount"
+                      placeholder="Enter amount"
+                      min="0"
+                      step="0.01"
+                      v-model="investAmount"
+                    />
+                  </div>
+                  <button class="btn btn-custom" @click="invest">Invest</button>
+                </div>
+                <!-- Right: Image -->
+                <div class="col-md-6 d-flex justify-content-center align-items-center">
+                  <img :src="mainImage" alt="Main card image" class="modal-image" />
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-custom" @click="closeModal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </div>
 </template>
 
@@ -35,18 +89,44 @@ export default {
     },
     yieldText: {
       type: String,
-      default: '' // Optionnel, affiche rien si non fourni
+      default: ''
     },
     buttonText: {
       type: String,
-      default: 'See more'
+      default: 'Invest'
+    }
+  },
+  data() {
+    return {
+      showModal: false,
+      investAmount: null
+    };
+  },
+  computed: {
+    modalId() {
+      return `modal-${this._uid}`;
+    }
+  },
+  methods: {
+    openModal() {
+      this.showModal = true;
+      document.body.classList.add('modal-open');
+      document.body.style.overflow = 'hidden';
     },
-    buttonLink: {
-      type: String,
-      default: '/'
+    closeModal() {
+      this.showModal = false;
+      document.body.classList.remove('modal-open');
+      document.body.style.overflow = '';
+    },
+    invest() {
+      if (this.investAmount && this.investAmount > 0) {
+        alert(`Investing ${this.investAmount} in ${this.headerText}`);
+      } else {
+        alert('Please enter a valid investment amount.');
+      }
     }
   }
-}
+};
 </script>
 
 <style scoped>
@@ -81,9 +161,9 @@ export default {
   top: 10px;
   left: 10px;
   font-size: 1rem;
-  font-weight: 500; /* Même épaisseur que .card-title */
-  color: var(--text-light); /* Utilise une couleur claire pour le contraste */
-  background: rgba(0, 0, 0, 0.6); /* Fond semi-transparent pour lisibilité */
+  font-weight: 500;
+  color: var(--text-light);
+  background: rgba(0, 0, 0, 0.6);
   padding: 0.25rem 0.5rem;
   border-radius: 0.25rem;
 }
@@ -106,5 +186,34 @@ export default {
 .btn-custom:focus {
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(168, 255, 0, 0.25);
+}
+.modal-dialog {
+  max-width: 75%;
+}
+.modal-content {
+  background: var(--background-light);
+  color: var(--text-dark);
+  max-height: 75vh;
+  overflow-y: auto;
+}
+.modal-header {
+  border-bottom: 1px solid var(--border-color);
+}
+.modal-footer {
+  border-top: 1px solid var(--border-color);
+}
+.modal-image {
+  max-width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+.form-control {
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+}
+.modal.fade.show {
+  opacity: 1;
 }
 </style>

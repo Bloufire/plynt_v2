@@ -19,21 +19,33 @@
               placeholder="Search by strategy name..."
             />
           </div>
-          <!-- Type Filter -->
-          <div class="col-12 col-md-4">
-            <div class="d-flex flex-wrap gap-3">
-              <div v-for="type in types" :key="type" class="form-check">
-                <input
-                  type="checkbox"
-                  :id="`type-${type}`"
-                  :value="type"
-                  v-model="selectedTypes"
-                  class="form-check-input"
-                />
-                <label :for="`type-${type}`" class="form-check-label text-capitalize">{{
-                  type
-                }}</label>
-              </div>
+          <!-- Type Filter (Dropdown) -->
+          <div class="col-12 col-md-3">
+            <div class="dropdown">
+              <button
+                class="btn btn-outline-custom dropdown-toggle w-100 text-start"
+                type="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                {{ selectedTypesLabel }}
+              </button>
+              <ul class="dropdown-menu">
+                <li v-for="type in types" :key="type" class="dropdown-item">
+                  <div class="form-check ms-2">
+                    <input
+                      type="checkbox"
+                      :id="`type-${type}`"
+                      :value="type"
+                      v-model="selectedTypes"
+                      class="form-check-input"
+                    />
+                    <label :for="`type-${type}`" class="form-check-label text-capitalize">
+                      {{ type }}
+                    </label>
+                  </div>
+                </li>
+              </ul>
             </div>
           </div>
           <!-- Sort Filter -->
@@ -44,7 +56,7 @@
             </select>
           </div>
           <!-- Clear Button -->
-          <div class="col-12 col-md-2 text-md-end">
+          <div class="col-12 col-md-3 text-md-end">
             <button class="btn btn-custom" @click="resetFilters">Clear</button>
           </div>
         </div>
@@ -60,7 +72,6 @@
               :header-text="strategy.headerText"
               :main-image="strategy.mainImage"
               :yield-text="strategy.yieldText"
-              :button-link="strategy.buttonLink"
             />
           </div>
         </div>
@@ -117,6 +128,13 @@ export default {
       });
 
       return filtered;
+    },
+    selectedTypesLabel() {
+      if (this.selectedTypes.length === this.types.length) return 'All Types';
+      if (this.selectedTypes.length === 0) return 'Select Types';
+      return this.selectedTypes
+        .map((type) => type.charAt(0).toUpperCase() + type.slice(1))
+        .join(', ');
     }
   },
   methods: {
@@ -176,6 +194,26 @@ export default {
 .btn-custom:focus {
   outline: none;
   box-shadow: 0 0 0 0.2rem rgba(168, 255, 0, 0.25);
+}
+.btn-outline-custom {
+  border: 1px solid var(--border-color);
+  color: var(--text-dark);
+  background: var(--background-light);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  font-weight: 500;
+}
+.btn-outline-custom:hover {
+  background: var(--background-dark);
+  color: var(--text-light);
+}
+.dropdown-menu {
+  background: var(--background-light);
+  border: 1px solid var(--border-color);
+}
+.dropdown-item:hover {
+  background: var(--background-dark);
+  color: var(--text-light);
 }
 @media (max-width: 767.98px) {
   .filters-section .row {

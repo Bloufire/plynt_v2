@@ -17,8 +17,6 @@
               header-text="DeFi Strategy"
               main-image="https://placehold.co/300x150"
               yield-text="15% APY"
-              button-text="See more"
-              button-link="/docs"
             />
           </div>
         </div>

@@ -18,8 +18,6 @@
               header-text="Trending Strategy 1"
               main-image="https://placehold.co/300x150/png"
               yield-text="25% APY"
-              button-text="See more"
-              button-link="/docs"
             />
           </div>
           <!-- Right Card with Title -->
@@ -30,8 +28,6 @@
               header-text="Trending Strategy 2"
               main-image="https://placehold.co/300x150/png"
               yield-text="125% APY"
-              button-text="See more"
-              button-link="/strategies"
             />
           </div>
         </div>
