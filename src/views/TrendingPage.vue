@@ -10,24 +10,30 @@
     <div class="trending-section py-5">
       <div class="container">
         <div class="row align-items-center">
-          <!-- Left Card with Title -->
+          <!-- Safe Mode Card -->
           <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
             <h3 class="card-title">Safe Mode</h3>
             <CustomCard
-              header-image="https://placehold.co/40x40/png"
-              header-text="Trending Strategy 1"
-              main-image="https://placehold.co/300x150/png"
-              yield-text="25% APY"
+              v-for="strategy in strategies.filter(s => s.type === 'safe')"
+              :key="strategy.id"
+              :header-image="strategy.headerImage"
+              :header-text="strategy.headerText"
+              :main-image="strategy.mainImage"
+              :yield-text="strategy.yieldText"
+              :button-link="strategy.buttonLink"
             />
           </div>
-          <!-- Right Card with Title -->
+          <!-- Degen Mode Card -->
           <div class="col-12 col-md-6 d-flex flex-column justify-content-center align-items-center">
             <h3 class="card-title">Degen Mode</h3>
             <CustomCard
-              header-image="https://placehold.co/40x40/png"
-              header-text="Trending Strategy 2"
-              main-image="https://placehold.co/300x150/png"
-              yield-text="125% APY"
+              v-for="strategy in strategies.filter(s => s.type === 'degen')"
+              :key="strategy.id"
+              :header-image="strategy.headerImage"
+              :header-text="strategy.headerText"
+              :main-image="strategy.mainImage"
+              :yield-text="strategy.yieldText"
+              :button-link="strategy.buttonLink"
             />
           </div>
         </div>
@@ -37,14 +43,20 @@
 </template>
 
 <script>
-import CustomCard from '../components/CustomCard.vue'
+import CustomCard from '../components/CustomCard.vue';
+import strategies from '../assets/data/trendingStrategies.json';
 
 export default {
   name: 'TrendingPage',
   components: {
-    CustomCard
-  }
-}
+    CustomCard,
+  },
+  data() {
+    return {
+      strategies,
+    };
+  },
+};
 </script>
 
 <style scoped>

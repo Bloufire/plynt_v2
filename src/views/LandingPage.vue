@@ -13,10 +13,13 @@
           <!-- Right: Custom Card -->
           <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
             <CustomCard
-              header-image="https://placehold.co/40"
-              header-text="DeFi Strategy"
-              main-image="https://placehold.co/300x150"
-              yield-text="15% APY"
+              v-for="strategy in strategies"
+              :key="strategy.id"
+              :header-image="strategy.headerImage"
+              :header-text="strategy.headerText"
+              :main-image="strategy.mainImage"
+              :yield-text="strategy.yieldText"
+              :button-link="strategy.buttonLink"
             />
           </div>
         </div>
@@ -27,12 +30,18 @@
 
 <script>
 import CustomCard from '../components/CustomCard.vue'
+import strategies from '../assets/data/homeStrategy.json'
 
 export default {
   name: 'LandingPage',
   components: {
     CustomCard
-  }
+  },
+  data() {
+    return {
+      strategies,
+    };
+  },
 }
 </script>
 

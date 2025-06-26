@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Trending High Yield",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "50% APY",
+    "buttonLink": "/docs",
+    "type": "degen"
+  },
+  {
+    "id": 2,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Trending Safe Bet",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "18% APY",
+    "buttonLink": "/docs",
+    "type": "safe"
+  }
+]

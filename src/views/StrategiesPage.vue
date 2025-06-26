@@ -85,7 +85,7 @@
 
 <script>
 import CustomCard from '../components/CustomCard.vue';
-import strategiesData from '../assets/strategies.json';
+import strategiesData from '../assets/data/strategies.json';
 
 export default {
   name: 'StrategiesPage',

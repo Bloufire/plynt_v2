@@ -1,0 +1,11 @@
+[
+  {
+    "id": 1,
+    "headerImage": "https://placehold.co/40x40/png",
+    "headerText": "Landing DeFi Strategy",
+    "mainImage": "https://placehold.co/300x150/png",
+    "yieldText": "30% APY",
+    "buttonLink": "/docs",
+    "type": "stable"
+  }
+]
